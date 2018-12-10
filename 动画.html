@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: #00CBBD;
+        }
+        /*队列显示用：*/
+        .test{
+            margin-top: 50px;
+            width: 50px;
+            height: 50px;
+            /*background: yellowgreen;*/
+            display: none;
+            float: left;
+            border-left: 1px solid white;
+            text-align: center;
+            line-height: 50px;
+            color: black;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<button id="btn1">隐藏box</button>
+<button id="btn2">显示box</button>
+<button id="btn3">显示/隐藏box</button>
+<button id="btn4">滑动隐藏box</button>
+<button id="btn5">滑动显示box</button>
+<button id="btn6">滑动显示/隐藏box</button>
+<button id="btn7">淡入淡出box</button>
+<div id="box"></div>
+
+
+<!--===================队列显示=================-->
+<p>
+    <button id="mybtn">队列显示</button>
+</p>
+
+<div class="test">罗</div>
+<div class="test">名</div>
+<div class="test">扬</div>
+<div class="test">要</div>
+<div class="test">拉</div>
+<div class="test">粑</div>
+<div class="test">粑</div>
+<div class="test">！</div>
+<script src="../jquery-3.1.1.js"></script>
+<script>
+$(function () {
+    //隐藏
+    $("#btn1").click(function () {
+        $("#box").hide(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+    });
+    //显示
+    $("#btn2").click(function () {
+        $("#box").show(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+    });
+    //隐藏/显示
+    $("#btn3").click(function () {
+        $("#box").toggle(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+    });
+
+    //滑动隐藏
+    $("#btn4").click(function () {
+        $("#box").slideUp(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+    });
+    //滑动显示
+    $("#btn5").click(function () {
+        $("#box").slideDown(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+    });
+    //隐藏/显示
+    $("#btn6").click(function () {
+        $("#box").slideToggle(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+    });
+
+    //淡入淡出
+    $("#btn7").click(function () {
+        // $("#box").fadeIn(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+        // $("#box").fadeOut(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+        // $("#box").fadeToggle(800);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+        $("#box").fadeTo("fast",.6);//括号内设置过渡时间(毫秒/fast/normal/slow)，
+    });
+
+
+    //队列显示
+    $("#mybtn").click(function () {
+    //     $(".test").eq(0).fadeIn(200,function () {
+    //         $(".test").eq(1).fadeIn(200,function () {
+    //             $(".test").eq(2).fadeIn(200,function () {
+    //                 $(".test").eq(3).fadeIn(200,function () {
+    //                     $(".test").eq(4).fadeIn(200,function () {
+    //                         $(".test").eq(5).fadeIn(200,function () {
+    //                             $(".test").eq(6).fadeIn(200,function () {
+    //                                 $(".test").eq(7).fadeIn(200)
+    //                             })
+    //                         })
+    //                     })
+    //                 })
+    //             })
+    //         })
+    //     })
+
+
+
+        $(".test").first().show(function myShow() {
+            $(this).next(".test").show(500,myShow)
+        })
+    })
+
+})
+</script>
+</body>
+</html>
